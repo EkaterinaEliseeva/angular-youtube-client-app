@@ -30,6 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -114,9 +119,9 @@
     }
   },
   "cli": {
-    "analytics": "75eab34b-db72-4499-8855-9488b3555fb1",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "analytics": false
   }
+},
+"cli": {
+  "analytics": false
 }

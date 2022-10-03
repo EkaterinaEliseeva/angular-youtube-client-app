@@ -1,1 +1,15 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header__wrapper">
+    <app-logo class="header__logo header__logo--mob"></app-logo>
+
+    <div class="header__search">
+      <app-logo class="header__logo header__logo--desktop"></app-logo>
+      <app-search-form></app-search-form>
+      <app-settings-button [toggleSorting]="toggleSorting"></app-settings-button>
+    </div>
+
+    <app-profile class="header__profile"></app-profile>
+  </div>
+</header>
+{{isShowSorting}}
+<app-sorting *ngIf="isShowSorting"></app-sorting>

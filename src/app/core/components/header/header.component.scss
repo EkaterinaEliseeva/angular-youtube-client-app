@@ -1,0 +1,71 @@
+@import "variables";
+@import "mixins";
+
+.header {
+  background-color: $c-gray;
+  @include flex();
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  &__wrapper {
+    @include container();
+    display: grid;
+    grid-template-areas:
+      "logo profile"
+      "search search";
+    grid-row-gap: 10px;
+
+    @include media-md {
+      grid-template-areas: "logo search profile";
+      grid-template-columns: 1fr 570px 1fr;
+      grid-column-gap: 10px;
+      grid-row-gap: 0;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+    @include flex();
+    height: 100%;
+
+    &--mob {
+      @include flex();
+
+      @include media-md {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+      grid-area: initial;
+
+      @include media-md {
+        @include flex();
+      }
+    }
+
+    @include media-md {
+      justify-content: flex-end;
+    }
+  }
+
+  &__search {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 24px;
+    grid-column-gap: 10px;
+    align-items: center;
+    grid-area: search;
+    width: 100%;
+
+    @include media-md {
+      width: auto;
+      grid-template-columns: 50px 476px auto;
+    }
+  }
+
+  &__profile {
+    grid-area: profile;
+  }
+}

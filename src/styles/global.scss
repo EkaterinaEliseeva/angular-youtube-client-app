@@ -1,0 +1,31 @@
+* {
+  font-family: $f-main;
+}
+
+.container {
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include media-xs {
+    width: 540px;
+  }
+
+  @include media-sm {
+    width: 730px;
+    padding: 0 15px;
+  }
+
+  @include media-md {
+    width: 830px;
+  }
+
+  @include media-lg {
+    width: 1010px;
+  }
+
+  @include media-xl {
+    width: 1220px;
+  }
+}

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-logo',
+  templateUrl: './logo.component.html',
+  styleUrls: ['./logo.component.scss'],
 })
-export default class ProfileComponent implements OnInit {
+export default class LogoComponent implements OnInit {
   // eslint-disable-next-line
   constructor() {}
   // eslint-disable-next-line

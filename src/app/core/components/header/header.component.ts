@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export default class HeaderComponent implements OnInit {
+  public isShowSorting: boolean = false;
+
+  public toggleSorting() {
+    this.isShowSorting = !this.isShowSorting;
+
+    console.log('toggleSorting', this.isShowSorting);
+  }
+
   // eslint-disable-next-line
-  constructor() {}
-  // eslint-disable-next-line
-  ngOnInit(): void {}
+  ngOnInit() {}
 }

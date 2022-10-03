@@ -1,0 +1,21 @@
+@import "variables";
+@import "mixins";
+
+.settings-button {
+  background-color: $c-brand;
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  border-radius: $br-lg;
+  cursor: pointer;
+  @include flex($jc: center);
+
+  @include outline-btn-brand();
+
+  .mat-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+}

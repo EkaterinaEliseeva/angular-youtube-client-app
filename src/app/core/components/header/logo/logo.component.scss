@@ -1,0 +1,12 @@
+@import "variables";
+@import "mixins";
+
+.logo {
+  height: 30px;
+  width: 30px;
+
+  @include media-md {
+    height: 50px;
+    width: 50px;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="search-item" [appHighlightPublicationStatus]="item.snippet.publishedAt">
+  <img class="search-item__preview" [src]="previewUrl" [alt]="title">
+  <div class="search-item__details">
+    <div class="search-item__details-item">
+      <mat-icon svgIcon="iconViewed" aria-hidden="false" aria-label="View svg icon"></mat-icon>
+      <span>{{statistics.viewCount}}</span>
+    </div>
+    <div class="search-item__details-item">
+      <mat-icon svgIcon="iconLiked" aria-hidden="false" aria-label="Like svg icon"></mat-icon>
+      <span>{{statistics.likeCount}}</span>
+    </div>
+    <div class="search-item__details-item">
+      <mat-icon svgIcon="iconDisliked" aria-hidden="false" aria-label="Dislike svg icon"></mat-icon>
+      <span>{{statistics.dislikeCount}}</span>
+    </div>
+    <div class="search-item__details-item">
+      <mat-icon svgIcon="iconSaved" aria-hidden="false" aria-label="Favorite svg icon"></mat-icon>
+      <span>{{statistics.commentCount}}</span>
+    </div>
+  </div>
+  <h3 class="search-item__title">{{title}}</h3>
+  <button class="search-item__btn-more">more...</button>
+</div>

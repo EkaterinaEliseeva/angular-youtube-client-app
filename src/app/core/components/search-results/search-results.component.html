@@ -1,1 +1,3 @@
-<p>search-results works!</p>
+<div class="search-results" >
+  <app-search-item class="search-results__item" *ngFor="let searchItem of searchResponse.items" [item]="searchItem"></app-search-item>
+</div>

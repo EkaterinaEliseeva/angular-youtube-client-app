@@ -1,7 +1,7 @@
-export default interface SearchItemStatisticsModel {
-  viewCount: number;
-  likeCount: number;
-  dislikeCount: number;
-  favoriteCount: number;
-  commentCount: number;
+export default interface ISearchItemStatistics {
+  viewCount: string;
+  likeCount: string;
+  dislikeCount: string;
+  favoriteCount: string;
+  commentCount: string;
 }

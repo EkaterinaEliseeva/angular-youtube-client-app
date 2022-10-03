@@ -1,0 +1,42 @@
+@import "variables";
+@import "mixins";
+
+.search-form {
+  @include font($fs: 12px, $lh: 14px);
+  @include flex();
+  flex: 1;
+
+  &__input {
+    color: $c-input-text;
+    background-color: $c-input-bg;
+    border: none;
+    padding: 5px 6px;
+    outline: none;
+    border-radius: $br-lg 0 0 $br-lg;
+    width: 100%;
+
+    &::placeholder {
+      color: $c-input-text;
+    }
+
+    @include media-md {
+      width: 396px;
+    }
+  }
+
+  &__btn {
+    background-color: $c-brand;
+    padding: 5px 16px;
+    border: none;
+    outline: none;
+    border-radius: 0 $br-lg $br-lg 0;
+    cursor: pointer;
+    @include font($fs: 12px, $lh: 14px, $c: $c-white);
+
+    @include media-sm {
+      padding: 5px 22px;
+    }
+
+    @include outline-btn-brand();
+  }
+}

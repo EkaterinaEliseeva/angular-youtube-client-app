@@ -1,8 +1,8 @@
 import ThumbnailsEnum from 'src/app/core/enums/thumbnails.enum';
-import ThumbnailModel from 'src/app/core/models/thumbnail.model';
-import SearchItemStatisticsModel from 'src/app/core/models/search-item-statistcis.model';
+import ISearchItemStatistics from 'src/app/core/models/search-item-statistcis.model';
+import IThumbnailModel from 'src/app/core/models/thumbnail.model';
 
-export default interface SearchItemModel {
+export default interface ISearchItem {
   kind: string;
   etag: string;
   id: string;
@@ -11,16 +11,18 @@ export default interface SearchItemModel {
     channelId: string;
     title: string;
     description: string;
-    thumbnails: Record<ThumbnailsEnum, ThumbnailModel>;
+    thumbnails: Record<ThumbnailsEnum, IThumbnailModel>;
+    channelTitle: string;
+    tags: string[];
+    categoryId: string;
+    liveBroadcastContent: string;
+    localized: {
+      title: string;
+      description: string;
+    };
+    defaultAudioLanguage: string;
+    defaultLanguage?: string;
   };
-  channelTitle: string;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: string;
-  localized: {
-    title: string;
-    description: string;
-  };
-  defaultAudioLanguage: string;
-  statistics: SearchItemStatisticsModel;
+
+  statistics: ISearchItemStatistics;
 }

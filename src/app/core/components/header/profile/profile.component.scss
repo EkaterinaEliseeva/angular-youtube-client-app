@@ -1,0 +1,17 @@
+@import "variables";
+@import "mixins";
+
+.profile {
+  @include flex($jc: flex-end);
+  height: 100%;
+
+  &__name {
+    @include font($fs: 12px, $lh: 14px, $c: $c-text);
+    margin-right: 10px;
+  }
+
+  &__icon {
+    background-color: $c-white;
+    border-radius: $br-lg;
+  }
+}

@@ -1,11 +1,11 @@
-import SearchItemModel from 'src/app/core/models/search-item.model';
+import ISearchItem from 'src/app/core/models/search-item.model';
 
-export default interface SearchResponseModel {
+export default interface ISearchResponse {
   kind: string;
   etag: string;
   pageInfo: {
     totalResults: number;
     resultsPerPage: number;
   };
-  items: SearchItemModel[];
+  items: ISearchItem[];
 }
