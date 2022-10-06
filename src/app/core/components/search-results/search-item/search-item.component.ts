@@ -21,22 +21,22 @@ export default class SearchItemComponent implements OnInit {
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'iconViewed',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-viewed.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-viewed.svg'),
     );
 
     iconRegistry.addSvgIcon(
       'iconLiked',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-liked.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-liked.svg'),
     );
 
     iconRegistry.addSvgIcon(
       'iconDisliked',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-disliked.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-disliked.svg'),
     );
 
     iconRegistry.addSvgIcon(
       'iconSaved',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-saved.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-saved.svg'),
     );
   }
 

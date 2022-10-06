@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-form',
@@ -6,7 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-form.component.scss'],
 })
 export default class SearchFormComponent {
+  @Output() changeInputEvent: EventEmitter<string> = new EventEmitter();
+
   searchControlPlaceholder = 'What are you want to find out?';
 
   searchBtnText = 'search';
+
+  changeSearchQuery(value: string) {
+    this.changeInputEvent.emit(value);
+  }
 }

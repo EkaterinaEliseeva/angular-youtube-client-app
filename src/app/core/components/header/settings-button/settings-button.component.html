@@ -1,4 +1,4 @@
-<button class="settings-button" (click)="toggleSorting()">
+<button class="header__search settings-button {{isShowSorting ? 'settings-button--red' : ''}}" (click)="toggleSorting()">
   <mat-icon svgIcon="iconSettings" aria-hidden="false" aria-label="Settings svg icon"></mat-icon>
 </button>
 

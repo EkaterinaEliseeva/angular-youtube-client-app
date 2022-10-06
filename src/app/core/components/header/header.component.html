@@ -4,12 +4,11 @@
 
     <div class="header__search">
       <app-logo class="header__logo header__logo--desktop"></app-logo>
-      <app-search-form></app-search-form>
-      <app-settings-button [toggleSorting]="toggleSorting"></app-settings-button>
+      <app-search-form (changeInputEvent)="changeSearchQuery($event)"></app-search-form>
+      <app-settings-button (toggleEvent)="toggleSorting()" [isShowSorting]="isShowSorting"></app-settings-button>
     </div>
 
     <app-profile class="header__profile"></app-profile>
   </div>
 </header>
-{{isShowSorting}}
-<app-sorting *ngIf="isShowSorting"></app-sorting>
+

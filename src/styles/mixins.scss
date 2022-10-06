@@ -177,6 +177,18 @@
   }
 }
 
+@mixin outline-btn-red {
+  &:focus {
+    outline: none;
+    filter: drop-shadow(2px 0px 4px $c-red);
+  }
+
+  &:focus-visible {
+    outline: none;
+    filter: drop-shadow(2px 0px 4px $c-red);
+  }
+}
+
 @mixin container {
   width: 100%;
   min-width: 320px;

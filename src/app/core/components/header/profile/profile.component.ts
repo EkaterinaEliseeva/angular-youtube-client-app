@@ -13,7 +13,7 @@ export default class ProfileComponent {
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'iconProfile',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-profile.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-profile.svg'),
     );
   }
 }

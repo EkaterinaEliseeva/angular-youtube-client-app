@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component, EventEmitter, Input, Output,
+} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -8,12 +10,18 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./settings-button.component.scss'],
 })
 export default class SettingsButtonComponent {
-  @Input() toggleSorting!: () => void;
+  @Input() isShowSorting!: boolean;
+
+  @Output() toggleEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'iconSettings',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-settings.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-settings.svg'),
     );
+  }
+
+  toggleSorting() {
+    this.toggleEvent.emit();
   }
 }

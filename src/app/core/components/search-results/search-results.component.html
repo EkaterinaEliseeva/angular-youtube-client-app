@@ -1,3 +1,7 @@
 <div class="search-results" >
-  <app-search-item class="search-results__item" *ngFor="let searchItem of searchResponse.items" [item]="searchItem"></app-search-item>
+  <app-search-item
+    class="search-results__item"
+    [item]="searchItem"
+    *ngFor="let searchItem of searchResponse.items | sorting : sortType : sortOrder : filterBySentence">
+  </app-search-item>
 </div>

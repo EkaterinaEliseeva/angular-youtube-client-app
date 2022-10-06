@@ -17,6 +17,8 @@ import SearchItemComponent from './core/components/search-results/search-item/se
 import SearchResultsComponent from './core/components/search-results/search-results.component';
 import SortingComponent from './core/components/sorting/sorting.component';
 import LogoComponent from './core/components/header/logo/logo.component';
+import SortingPipe from './core/pipes/sorting.pipe';
+import YoutubeComponent from './core/components/youtube/youtube.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import LogoComponent from './core/components/header/logo/logo.component';
     SettingsButtonComponent,
     LogoComponent,
     HighlightPublicationStatusDirective,
+    SortingPipe,
+    YoutubeComponent,
   ],
   imports: [
     BrowserModule,

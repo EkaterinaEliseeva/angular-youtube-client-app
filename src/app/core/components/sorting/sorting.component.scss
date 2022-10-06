@@ -6,6 +6,10 @@
   padding-top: 18px;
   padding-bottom: 18px;
 
+  &--open {
+    animation: fadeInTop $t-std forwards;
+  }
+
   &__wrapper {
     @include container();
 
@@ -44,9 +48,26 @@
     border: 0;
     padding: 0;
     outline: 0;
-    border-bottom: 1px solid $c-brand;
     background: transparent;
     @include font($fs: 12px, $lh: 12px, $c: $c-brand);
+    position: relative;
+
+    &--active {
+      &:after {
+        content: '';
+        @include absolute($b: -1px, $l: 0, $r: 0);
+        height: 0.5px;
+        background: $c-brand;
+      }
+    }
+
+    &--asc + .sorting__form-control-icon {
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+
+  &__form-control-icon {
+    transition: transform $t-std;
   }
 
   &__form-control-input {
@@ -57,5 +78,17 @@
     outline: none;
     @include font($fs: 10px, $lh: 12px, $c: $c-input-text);
     min-width: 150px;
+  }
+}
+
+@keyframes fadeInTop {
+  0% {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

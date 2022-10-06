@@ -1,0 +1,20 @@
+<app-header (changeSearchEvent)="changeSearchQuery($event)" [isShowSorting]="isShowSorting" (toggle)="toggleSorting()"></app-header>
+<app-sorting
+  *ngIf="isShowSorting"
+  [isOpen]="isShowSorting"
+  [sortType]="sortType"
+  [sortOrder]="sortOrder"
+  [filterBySentence]="filterBySentence"
+  (eventSortType)="changeSortType($event)"
+  (eventSortOrder)="changeSortOrder($event)"
+  (eventSortBySentence)="changeFilterBySentence($event)"
+></app-sorting>
+
+<main class="main">
+  <app-search-results
+    *ngIf="searchQuery"
+    [sortType]="sortType"
+    [sortOrder]="sortOrder"
+    [filterBySentence]="filterBySentence">
+  </app-search-results>
+</main>

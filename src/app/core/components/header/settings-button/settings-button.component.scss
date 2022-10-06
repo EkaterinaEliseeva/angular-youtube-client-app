@@ -13,6 +13,11 @@
 
   @include outline-btn-brand();
 
+  &--red {
+    background-color: $c-red;
+    @include outline-btn-red();
+  }
+
   .mat-icon {
     width: 15px;
     height: 15px;

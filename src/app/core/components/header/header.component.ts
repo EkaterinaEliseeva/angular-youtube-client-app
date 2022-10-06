@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, EventEmitter, Input, OnInit, Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,14 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export default class HeaderComponent implements OnInit {
-  public isShowSorting: boolean = false;
+  @Input() isShowSorting!: boolean;
 
-  public toggleSorting() {
-    this.isShowSorting = !this.isShowSorting;
+  @Output() toggle: EventEmitter<void> = new EventEmitter();
 
-    console.log('toggleSorting', this.isShowSorting);
-  }
+  @Output() changeSearchEvent: EventEmitter<string> = new EventEmitter();
 
   // eslint-disable-next-line
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  changeSearchQuery(value: string) {
+    this.changeSearchEvent.emit(value);
+  }
+
+  toggleSorting() {
+    this.toggle.emit();
+  }
 }

@@ -1,4 +1,6 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive, ElementRef, Input, OnInit, Renderer2,
+} from '@angular/core';
 import * as moment from 'moment';
 import HighlightColorsEnum from 'src/app/core/enums/highlight-colors.enum';
 
@@ -10,7 +12,8 @@ export default class HighlightPublicationStatusDirective implements OnInit {
 
   public color!: HighlightColorsEnum;
 
-  constructor(private elementRef: ElementRef, private renderer2: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer2: Renderer2) {
+  }
 
   ngOnInit() {
     const date = moment(this.publicationDateString);
