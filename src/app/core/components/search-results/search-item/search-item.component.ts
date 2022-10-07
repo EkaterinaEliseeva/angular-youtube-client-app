@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import ISearchItem from 'src/app/core/models/search-item.model';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import ISearchItemStatistics from 'src/app/core/models/search-item-statistcis.model';
 
 @Component({
@@ -17,28 +15,6 @@ export default class SearchItemComponent implements OnInit {
   public previewUrl!: string;
 
   public statistics!: ISearchItemStatistics;
-
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'iconViewed',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-viewed.svg'),
-    );
-
-    iconRegistry.addSvgIcon(
-      'iconLiked',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-liked.svg'),
-    );
-
-    iconRegistry.addSvgIcon(
-      'iconDisliked',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-disliked.svg'),
-    );
-
-    iconRegistry.addSvgIcon(
-      'iconSaved',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-saved.svg'),
-    );
-  }
 
   private assertInputsProvided(): void {
     if (!this.item) {

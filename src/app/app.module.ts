@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import HighlightPublicationStatusDirective from 'src/app/core/directives/highlight-publication-status.directive';
+import IconModule from 'src/app/core/modules/icon/icon.module';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import HeaderComponent from './core/components/header/header.component';
@@ -41,6 +42,7 @@ import YoutubeComponent from './core/components/youtube/youtube.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    IconModule,
     MatInputModule,
     MatIconModule,
   ],

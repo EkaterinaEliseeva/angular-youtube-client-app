@@ -1,8 +1,6 @@
 import {
   Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,
 } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import SortOrderEnum from 'src/app/core/enums/sort-order.enum';
 import SortTypesEnum from 'src/app/core/enums/sort-types.enum';
 
@@ -39,18 +37,6 @@ export default class SortingComponent implements OnInit, OnChanges {
     },
   ];
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'iconSorting',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-sorting.svg'),
-    );
-
-    iconRegistry.addSvgIcon(
-      'iconSortingArrow',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-sort-arrow.svg'),
-    );
-  }
-
   getNextSortOrder(): SortOrderEnum | null {
     if (!this.sortOrder) {
       return SortOrderEnum.asc;
@@ -65,19 +51,11 @@ export default class SortingComponent implements OnInit, OnChanges {
     if (this.sortType === sortType) {
       const sortOrder = this.getNextSortOrder();
 
-      if (!sortOrder) {
-        this.eventSortType.emit(null);
-      }
-
-      this.eventSortOrder.emit(sortOrder);
+      this.eventSortOrder.emit(sortOrder ?? null);
     } else {
       this.eventSortType.emit(sortType);
       this.eventSortOrder.emit(SortOrderEnum.asc);
     }
-  }
-
-  toggleSortOrder(sortOrder: SortOrderEnum | null) {
-    this.eventSortOrder.emit(sortOrder);
   }
 
   changeSortBySentence(value: string) {
@@ -88,12 +66,12 @@ export default class SortingComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['sortType'] && changes['sortOrder']) {
+    if (changes['sortType']) {
       this.sortTypes = this.sortTypes
         .map((sortType) => (
           sortType.type === changes['sortType'].currentValue
-            ? { ...sortType, isActive: true, sortOrder: changes['sortOrder'].currentValue }
-            : { ...sortType, isActive: false, sortOrder: changes['sortOrder'].currentValue }
+            ? { ...sortType, isActive: true, sortOrder: changes['sortOrder']?.currentValue ?? this.sortOrder }
+            : { ...sortType, isActive: false, sortOrder: null }
         ));
     }
 

@@ -30,7 +30,12 @@
 
       <div class="sorting__form-control">
         <span>by word or sentance</span>
-        <input #input [ngModel]="filterBySentence" (input)="changeSortBySentence(input.value)" class="sorting__form-control-input" type="text">
+        <input
+          #input
+          [ngModel]="filterBySentence"
+          (input)="changeSortBySentence(input.value)"
+          class="sorting__form-control-input"
+          type="text">
       </div>
     </div>
   </div>
