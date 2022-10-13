@@ -1,50 +1,25 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import HighlightPublicationStatusDirective from 'src/app/core/directives/highlight-publication-status.directive';
-import IconModule from 'src/app/core/modules/icon/icon.module';
-import AppRoutingModule from './app-routing.module';
+
+import CoreModule from 'src/app/core/core.module';
+import AppRoutingModule from 'src/app/app-routing.module';
+import YoutubeModule from 'src/app/features/youtube/youtube.module';
 import AppComponent from './app.component';
-import HeaderComponent from './core/components/header/header.component';
-import SearchFormComponent from './core/components/header/search-form/search-form.component';
-import SettingsButtonComponent from './core/components/header/settings-button/settings-button.component';
-import ProfileComponent from './core/components/header/profile/profile.component';
-import SearchItemComponent from './core/components/search-results/search-item/search-item.component';
-import SearchResultsComponent from './core/components/search-results/search-results.component';
-import SortingComponent from './core/components/sorting/sorting.component';
-import LogoComponent from './core/components/header/logo/logo.component';
-import SortingPipe from './core/pipes/sorting.pipe';
-import YoutubeComponent from './core/components/youtube/youtube.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchItemComponent,
-    SearchResultsComponent,
-    HeaderComponent,
-    SearchFormComponent,
-    SortingComponent,
-    ProfileComponent,
-    SettingsButtonComponent,
-    LogoComponent,
-    HighlightPublicationStatusDirective,
-    SortingPipe,
-    YoutubeComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    IconModule,
-    MatInputModule,
-    MatIconModule,
+
+    CoreModule,
+    YoutubeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

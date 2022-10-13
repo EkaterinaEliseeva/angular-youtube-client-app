@@ -1,6 +1,5 @@
-import {
-  Component, EventEmitter, Input, Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
+import SortingService from 'src/app/core/services/sorting/sorting.service';
 
 @Component({
   selector: 'app-settings-button',
@@ -8,11 +7,15 @@ import {
   styleUrls: ['./settings-button.component.scss'],
 })
 export default class SettingsButtonComponent {
-  @Input() isShowSorting!: boolean;
+  public isShowSorting!: boolean;
 
-  @Output() toggleEvent: EventEmitter<void> = new EventEmitter<void>();
+  constructor(private readonly sortingService: SortingService) {
+    this.sortingService.showSorting.subscribe((isShow) => {
+      this.isShowSorting = isShow;
+    });
+  }
 
   toggleSorting() {
-    this.toggleEvent.emit();
+    this.sortingService.toggleSorting();
   }
 }
