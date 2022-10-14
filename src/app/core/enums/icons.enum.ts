@@ -7,6 +7,7 @@ enum IconsEnum {
   iconSettings = 'icon-settings',
   iconSorting = 'icon-sorting',
   iconSortingArrow = 'icon-sort-arrow',
+  iconBack = 'icon-back',
 }
 
 export default IconsEnum;

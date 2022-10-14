@@ -165,27 +165,15 @@
   width: 1px;
 }
 
-@mixin outline-btn-brand {
+@mixin outline-btn($value) {
   &:focus {
     outline: none;
-    filter: drop-shadow(2px 0px 4px $c-brand);
+    filter: drop-shadow(2px 0px 4px $value);
   }
 
   &:focus-visible {
     outline: none;
-    filter: drop-shadow(2px 0px 4px $c-brand);
-  }
-}
-
-@mixin outline-btn-red {
-  &:focus {
-    outline: none;
-    filter: drop-shadow(2px 0px 4px $c-red);
-  }
-
-  &:focus-visible {
-    outline: none;
-    filter: drop-shadow(2px 0px 4px $c-red);
+    filter: drop-shadow(2px 0px 4px $value);
   }
 }
 

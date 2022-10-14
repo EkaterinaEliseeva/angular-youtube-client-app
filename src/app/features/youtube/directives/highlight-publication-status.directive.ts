@@ -31,6 +31,6 @@ export default class HighlightPublicationStatusDirective implements OnInit {
       this.color = HighlightColorsEnum.green;
     }
 
-    this.renderer2.addClass(this.elementRef.nativeElement, `search-item--highlight-${this.color}`);
+    this.renderer2.addClass(this.elementRef.nativeElement, `highlight-${this.color}`);
   }
 }

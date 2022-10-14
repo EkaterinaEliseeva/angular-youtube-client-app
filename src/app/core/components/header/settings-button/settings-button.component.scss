@@ -11,11 +11,11 @@
   cursor: pointer;
   @include flex($jc: center);
 
-  @include outline-btn-brand();
+  @include outline-btn($c-brand);
 
   &--red {
     background-color: $c-red;
-    @include outline-btn-red();
+    @include outline-btn($c-red);
   }
 
   .mat-icon {

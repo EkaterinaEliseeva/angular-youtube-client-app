@@ -1,0 +1,18 @@
+<div class="auth">
+  <form #form (submit)="submitForm($event)" class="auth__form auth-form">
+    <h1 class="auth-form__title">{{formActionName}}</h1>
+
+    <div *ngFor="let formField of authFormFields" class="auth-form__field">
+      <label [for]="formField.name" class="auth-form__label">{{formField.name}}</label>
+      <input
+        type="text"
+        [name]="formField.name"
+        [id]="formField.name"
+        class="auth-form__input"
+        [placeholder]="formField.name"
+      >
+    </div>
+
+    <button type="submit" class="auth-form__btn">{{formActionName}}</button>
+  </form>
+</div>

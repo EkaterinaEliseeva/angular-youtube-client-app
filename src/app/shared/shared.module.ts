@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -11,14 +11,14 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MatInputModule,
     MatIconModule,
-    BrowserAnimationsModule,
     FormsModule,
+    RouterModule,
   ],
   exports: [
     MatInputModule,
     MatIconModule,
-    BrowserAnimationsModule,
     FormsModule,
+    RouterModule,
   ],
 })
 export default class SharedModule { }

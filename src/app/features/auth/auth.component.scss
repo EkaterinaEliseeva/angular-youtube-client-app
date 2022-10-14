@@ -1,0 +1,60 @@
+@import "variables";
+@import "mixins";
+
+.auth {
+  padding: 45px;
+  @include flex($jc: center)
+}
+
+.auth-form {
+  padding: 28px 20px;
+  background-color: $c-gray-bg;
+  @include flex($fd: column);
+  border-radius: $br-lg;
+
+  &__title {
+    align-self: flex-start;
+    @include font($fs: 18px, $lh: 22px, $fw: 700);
+    margin-bottom: 12px;
+  }
+
+  &__field {
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    display: block;
+    @include font($fs: 10px, $lh: 12px, $c: $c-label);
+    margin-bottom: 4px;
+    margin-left: 8px;
+  }
+
+  &__input {
+    width: 100%;
+    height: 36px;
+    background-color: $c-input-bg;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    @include font($fs: 10px, $lh: 12px, $c: $c-black);
+
+    @include media-xs {
+      width: 304px;
+    }
+  }
+
+  &__btn {
+    margin-top: 22px;
+    background-color: $c-brand;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    border-radius: $br-lg;
+    cursor: pointer;
+    min-width: 124px;
+    @include font($fs: 12px, $lh: 14px, $c: $c-white);
+    align-self: flex-end;
+
+    @include outline-btn($c-brand);
+  }
+}

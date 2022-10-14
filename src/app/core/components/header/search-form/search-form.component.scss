@@ -37,6 +37,6 @@
       padding: 5px 22px;
     }
 
-    @include outline-btn-brand();
+    @include outline-btn($c-brand);
   }
 }

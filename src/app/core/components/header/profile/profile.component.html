@@ -1,4 +1,30 @@
 <div class="profile">
-  <span class="profile__name">{{userName}}</span>
-  <mat-icon class="profile__icon" svgIcon="iconProfile" aria-hidden="false" aria-label="Account svg icon"></mat-icon>
+  <button
+    *ngIf="!isLogged"
+    [routerLink]="['/login']"
+    class="profile__login">
+    Log in
+  </button>
+
+  <span
+    *ngIf="isLogged"
+    class="profile__name">
+    {{userName}}
+  </span>
+
+  <mat-icon
+    *ngIf="isLogged"
+    class="profile__icon"
+    svgIcon="iconProfile"
+    aria-hidden="false"
+    aria-label="Account svg icon">
+
+  </mat-icon>
+
+  <button
+    *ngIf="isLogged"
+    class="profile__logout"
+    (click)="logOut()">
+    Log out
+  </button>
 </div>

@@ -1,0 +1,26 @@
+<div class="detailed-page">
+  <div class="detailed-card" [appHighlightPublicationStatus]="item.snippet.publishedAt">
+    <button class="detailed-card__back" [routerLink]="['/main']">
+      <mat-icon svgIcon="iconBack" aria-hidden="false" aria-label="Back svg icon"></mat-icon>
+    </button>
+    <div class="detailed-card__video">
+      <img [src]="item.snippet.thumbnails.maxres.url">
+    </div>
+    <div class="detailed-card__info">
+      <div class="detailed-card__header">
+        <h1 class="detailed-card__title">{{item.snippet.title}}</h1>
+        <span class="detailed-card__date">{{item.snippet.publishedAt | date : 'fullDate'}}</span>
+      </div>
+      <div class="detailed-card__description">
+        <b>Description:</b>
+        <p>{{item.snippet.description}}</p>
+      </div>
+
+      <div class="detailed-card__footer">
+        <app-item-statistics [statistics]="item.statistics"></app-item-statistics>
+      </div>
+    </div>
+  </div>
+</div>
+
+

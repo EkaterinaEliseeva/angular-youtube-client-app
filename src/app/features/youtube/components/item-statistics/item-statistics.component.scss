@@ -1,0 +1,21 @@
+@import "variables";
+@import "mixins";
+
+.details {
+  margin-top: 4px;
+  @include flex($fw: wrap);
+  margin-left: -16px;
+
+  &__item {
+    @include font($fs: 10px, $lh: 13px, $c: $c-black);
+    @include flex();
+    margin-left: 16px;
+    margin-top: 16px;
+
+    .mat-icon {
+      height: 13px;
+      margin-right: 3px;
+    }
+  }
+}
+

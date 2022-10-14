@@ -7,6 +7,9 @@ import HighlightPublicationStatusDirective
 import SortingPipe from 'src/app/features/youtube/pipes/sorting.pipe';
 import YoutubeComponent from 'src/app/features/youtube/youtube.component';
 import SharedModule from 'src/app/shared/shared.module';
+import { CommonModule } from '@angular/common';
+import DetailedPageComponent from './pages/detailed-page/detailed-page.component';
+import ItemStatisticsComponent from './components/item-statistics/item-statistics.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +19,11 @@ import SharedModule from 'src/app/shared/shared.module';
     SortingComponent,
     HighlightPublicationStatusDirective,
     SortingPipe,
+    DetailedPageComponent,
+    ItemStatisticsComponent,
   ],
   imports: [
+    CommonModule,
     SharedModule,
   ],
   exports: [
