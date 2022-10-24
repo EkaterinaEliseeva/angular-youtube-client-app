@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import searchResponseMock from 'src/app/features/youtube/mocks/search-response.mock';
 import ISearchItem from 'src/app/features/youtube/models/search-item.model';
+import SearchService from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-detailed-page',
@@ -11,11 +11,13 @@ import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 export default class DetailedPageComponent implements OnInit {
   public pageId!: string;
 
-  private searchResponse = searchResponseMock;
-
   public item!: ISearchItem;
 
-  constructor(private readonly route: ActivatedRoute, private readonly router: Router) {
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly searchService: SearchService,
+  ) {
 
   }
 
@@ -24,7 +26,7 @@ export default class DetailedPageComponent implements OnInit {
       this.pageId = params['id'];
     });
 
-    const item = this.searchResponse.items.find((searchItem) => searchItem.id === this.pageId);
+    const item = await this.searchService.getItem(this.pageId);
 
     if (!item) {
       await this.router.navigate(['/not-found']);

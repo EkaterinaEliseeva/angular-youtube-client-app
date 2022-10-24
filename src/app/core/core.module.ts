@@ -12,9 +12,13 @@ import NotFoundComponent from 'src/app/core/components/not-found/not-found.compo
 import AuthService from 'src/app/core/services/auth/auth.service';
 import AuthGuard from 'src/app/features/auth/guards/auth.guard';
 import ProfileComponent from 'src/app/core/components/header/profile/profile.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import YoutubeInterceptor from 'src/app/core/interceptors/youtube.interceptor';
 
 @NgModule({
-  providers: [IconService, SearchService, SortingService, AuthService, AuthGuard],
+  providers: [IconService, SearchService, SortingService, AuthService, AuthGuard, {
+    provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true,
+  }],
   declarations: [
     HeaderComponent,
     LogoComponent,

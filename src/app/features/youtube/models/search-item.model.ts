@@ -1,11 +1,9 @@
 import ThumbnailsEnum from 'src/app/features/youtube/enums/thumbnails.enum';
 import ISearchItemStatistics from 'src/app/features/youtube/models/search-item-statistcis.model';
 import IThumbnailModel from 'src/app/features/youtube/models/thumbnail.model';
+import ISimpleSearchItem from 'src/app/features/youtube/models/simple-search-item.model';
 
-export default interface ISearchItem {
-  kind: string;
-  etag: string;
-  id: string;
+export default interface ISearchItem extends ISimpleSearchItem {
   snippet: {
     publishedAt: string;
     channelId: string;

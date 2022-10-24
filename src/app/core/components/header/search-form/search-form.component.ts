@@ -9,8 +9,6 @@ import SearchService from 'src/app/core/services/search/search.service';
 export default class SearchFormComponent {
   searchControlPlaceholder = 'What are you want to find out?';
 
-  searchBtnText = 'search';
-
   constructor(private readonly searchService: SearchService) {
   }
 

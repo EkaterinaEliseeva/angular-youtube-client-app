@@ -20,8 +20,8 @@ export default class YoutubeComponent {
       this.isShowSorting = isShow;
     });
 
-    this.searchService.searchQuery.subscribe((value) => {
-      this.isLoaded = !!value;
+    this.searchService.items.subscribe((items) => {
+      this.isLoaded = !!items.length;
     });
   }
 }

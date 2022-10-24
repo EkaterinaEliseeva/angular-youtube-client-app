@@ -2,6 +2,6 @@
   <app-search-item
     class="search-results__item"
     [item]="searchItem"
-    *ngFor="let searchItem of searchResponse.items | sorting : sortType : sortOrder : filterBySentence">
+    *ngFor="let searchItem of items | sorting : sortType : sortOrder : filterBySentence">
   </app-search-item>
 </div>

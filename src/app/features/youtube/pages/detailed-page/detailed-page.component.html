@@ -1,5 +1,5 @@
 <div class="detailed-page">
-  <div class="detailed-card" [appHighlightPublicationStatus]="item.snippet.publishedAt">
+  <div *ngIf="item" class="detailed-card" [appHighlightPublicationStatus]="item.snippet.publishedAt">
     <button class="detailed-card__back" [routerLink]="['/main']">
       <mat-icon svgIcon="iconBack" aria-hidden="false" aria-label="Back svg icon"></mat-icon>
     </button>
