@@ -17,9 +17,7 @@ export default class DetailedPageComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly searchService: SearchService,
-  ) {
-
-  }
+  ) {}
 
   async ngOnInit() {
     this.route.params.subscribe((params) => {

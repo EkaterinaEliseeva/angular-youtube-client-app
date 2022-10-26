@@ -1,16 +1,41 @@
 <div class="auth">
-  <form #form (submit)="submitForm($event)" class="auth__form auth-form">
+  <form [formGroup]="authForm" (submit)="authForm.valid && submitForm($event)" class="auth__form auth-form">
     <h1 class="auth-form__title">{{formActionName}}</h1>
 
-    <div *ngFor="let formField of authFormFields" class="auth-form__field">
-      <label [for]="formField.name" class="auth-form__label">{{formField.name}}</label>
+    <div class="auth-form__field">
+      <label for="login" class="auth-form__label">Login</label>
       <input
         type="text"
-        [name]="formField.name"
-        [id]="formField.name"
+        formControlName="login"
+        id="login"
         class="auth-form__input"
-        [placeholder]="formField.name"
+        placeholder="Login"
+        required
       >
+      <span class="auth-form__error" *ngIf="login.error">
+        {{login.error}}
+      </span>
+    </div>
+
+    <div class="auth-form__field">
+      <label for="password" class="auth-form__label">Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        id="password"
+        class="auth-form__input"
+        placeholder="Password"
+      >
+      <span class="auth-form__error" *ngIf="password.error">
+        {{password.error}}
+      </span>
+      <ul *ngIf="password.customError" class="auth-form__errors">
+        <li
+          *ngFor="let validationProp of password.customError"
+          class="auth-form__errors-prop {{validationProp.error ? 'auth-form__errors-prop--active' : ''}}">
+            {{validationProp.message}}
+        </li>
+      </ul>
     </div>
 
     <button type="submit" class="auth-form__btn">{{formActionName}}</button>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import LocalStorageUtil from 'src/app/shared/utils/local-storage.util';
+import LocalStorageUtil from 'src/utils/local-storage.util';
 import { IUser } from 'src/app/features/auth/models/user.interface';
-import CryptoUtil from 'src/app/shared/utils/crypto.util';
+import CryptoUtil from 'src/utils/crypto.util';
 
 @Injectable()
 export default class AuthService {
