@@ -2,20 +2,13 @@
   <form [formGroup]="authForm" (submit)="authForm.valid && submitForm($event)" class="auth__form auth-form">
     <h1 class="auth-form__title">{{formActionName}}</h1>
 
-    <div class="auth-form__field">
-      <label for="login" class="auth-form__label">Login</label>
-      <input
-        type="text"
-        formControlName="login"
-        id="login"
-        class="auth-form__input"
-        placeholder="Login"
-        required
-      >
-      <span class="auth-form__error" *ngIf="login.error">
-        {{login.error}}
-      </span>
-    </div>
+    <app-control
+      id="login"
+      name="login"
+      placeholder="Login"
+      [formGroup]="authForm"
+      [required]="true"
+      [error]="login.error"></app-control>
 
     <div class="auth-form__field">
       <label for="password" class="auth-form__label">Password</label>
@@ -29,6 +22,7 @@
       <span class="auth-form__error" *ngIf="password.error">
         {{password.error}}
       </span>
+
       <ul *ngIf="password.customError" class="auth-form__errors">
         <li
           *ngFor="let validationProp of password.customError"

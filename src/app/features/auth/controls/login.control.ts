@@ -1,49 +1,24 @@
-import {
-  FormControl, Validators,
-} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import VALIDATION_LABELS from 'src/config/validation.config';
+import AbstractFormControl from 'src/app/features/admin/controls/abstract.control';
 
-export default class LoginControl {
-  private readonly login: FormControl;
+interface IControlErrors {
+  required: string;
+  email: string;
+}
 
-  private loginError: string | null = null;
+export default class LoginControl extends AbstractFormControl<IControlErrors> {
+  formControl: FormControl;
 
-  private labels: Record<string, string> = {
+  protected labels: Record<string, string> = {
     required: VALIDATION_LABELS.requiredLogin,
     email: VALIDATION_LABELS.invalidEmail,
   };
 
   constructor() {
-    this.login = new FormControl('', [Validators.required, Validators.email]);
+    super();
 
-    this.login.valueChanges.subscribe(() => {
-      this.loginError = this.getError();
-    });
-  }
-
-  private getError() {
-    if (!this.login.touched) {
-      return null;
-    }
-
-    const errors = this.login?.errors;
-
-    if (errors && errors['required']) {
-      return this.labels['required'];
-    }
-
-    if (errors && errors['email']) {
-      return this.labels['email'];
-    }
-
-    return null;
-  }
-
-  get error(): string | null {
-    return this.loginError;
-  }
-
-  get control() {
-    return this.login;
+    this.formControl = new FormControl('', [Validators.required, Validators.email]);
+    this.subscribeToChanges();
   }
 }

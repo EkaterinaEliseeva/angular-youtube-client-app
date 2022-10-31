@@ -66,11 +66,12 @@ export default class PasswordControl {
   };
 
   private getError() {
-    if (!this.password.touched) {
+    const { errors, touched, value } = this.password;
+    const isTouched = touched || (!touched && value);
+
+    if (!isTouched) {
       return null;
     }
-
-    const errors = this.password?.errors;
 
     if (errors && errors['required']) {
       return VALIDATION_LABELS.requiredPassword;
@@ -84,9 +85,12 @@ export default class PasswordControl {
   }
 
   private getCustomError() {
-    const { errors, touched } = this.password;
+    const {
+      dirty, errors, touched, value,
+    } = this.password;
+    const isTouched = dirty || touched || (!touched && value);
 
-    if (touched && errors && !errors['required'] && errors['customErrors']) {
+    if (isTouched && errors && !errors['required'] && errors['customErrors']) {
       return Object.keys(PasswordValidationEnum).map((key) => ({
         key,
         error: errors['customErrors'].get(key),

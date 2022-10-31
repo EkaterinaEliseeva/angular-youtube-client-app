@@ -45,4 +45,8 @@ export default class AuthComponent implements OnInit {
       await this.router.navigate(['/main']);
     }
   }
+
+  get passControl() {
+    return this.authForm.get('password');
+  }
 }

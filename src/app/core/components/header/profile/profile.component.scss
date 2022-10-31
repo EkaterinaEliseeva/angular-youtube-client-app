@@ -13,6 +13,7 @@
   &__icon {
     background-color: $c-white;
     border-radius: $br-lg;
+    flex-shrink: 0;
   }
 
   &__login {

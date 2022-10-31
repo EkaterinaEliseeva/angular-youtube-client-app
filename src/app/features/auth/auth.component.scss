@@ -2,8 +2,12 @@
 @import "mixins";
 
 .auth {
-  padding: 45px;
-  @include flex($jc: center)
+  padding: 10px;
+  @include flex($jc: center);
+
+  @include media-xs {
+    padding: 45px;
+  }
 }
 
 .auth-form {
@@ -11,6 +15,11 @@
   background-color: $c-gray-bg;
   @include flex($fd: column);
   border-radius: $br-lg;
+  width: 100%;
+
+  @include media-xs {
+    width: auto;
+  }
 
   &__title {
     align-self: flex-start;
@@ -34,13 +43,19 @@
     width: 100%;
     height: 36px;
     background-color: $c-input-bg;
-    border: none;
     outline: none;
     padding: 12px 8px;
+    border: 1px solid transparent;
     @include font($fs: 10px, $lh: 12px, $c: $c-black);
+    transition: border-color $t-std;
 
     @include media-xs {
       width: 304px;
+    }
+
+    &.ng-touched.ng-invalid {
+      border-color: $c-red;
+      background-color: rgba($c-red, 0.1);
     }
   }
 

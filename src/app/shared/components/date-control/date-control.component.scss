@@ -1,0 +1,34 @@
+@import "variables";
+@import "mixins";
+
+.control {
+  padding-bottom: 24px;
+  position: relative;
+
+  &__label {
+    display: block;
+    @include font($fs: 10px, $lh: 12px, $c: $c-label);
+    margin-bottom: 4px;
+    margin-left: 8px;
+  }
+
+  &__input {
+    width: 100%;
+    height: 36px;
+    background-color: $c-input-bg;
+    border: none;
+    outline: none;
+    padding: 12px 8px;
+    @include font($fs: 10px, $lh: 12px, $c: $c-black);
+
+    @include media-xs {
+      width: 304px;
+    }
+  }
+
+  &__error {
+    @include absolute($t: 56px, $l: 8px);
+    @include font($fs: 10px, $lh: 12px, $c: $c-red);
+    display: block;
+  }
+}

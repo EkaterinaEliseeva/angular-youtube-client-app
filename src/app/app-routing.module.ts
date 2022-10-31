@@ -5,6 +5,7 @@ import YoutubeComponent from 'src/app/features/youtube/youtube.component';
 import NotFoundComponent from 'src/app/core/components/not-found/not-found.component';
 import DetailedPageComponent from 'src/app/features/youtube/pages/detailed-page/detailed-page.component';
 import AuthGuard from 'src/app/features/auth/guards/auth.guard';
+import AdminComponent from 'src/app/features/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,12 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./features/youtube/youtube.module').then((m) => m.default),
     component: YoutubeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.module').then((m) => m.default),
+    component: AdminComponent,
     canActivate: [AuthGuard],
   },
   {
