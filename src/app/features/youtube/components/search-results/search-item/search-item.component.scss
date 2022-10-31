@@ -1,0 +1,84 @@
+@import "variables";
+@import "mixins";
+
+.search-item {
+  @include flex($fd: column, $ai: stretch);
+  padding: 20px 20px 15px;
+  background-color: $c-gray;
+  border-radius: $br-xl;
+  filter: drop-shadow(2px 2px 4px rgba($c-black, 0.25));
+  height: 100%;
+  min-height: 327px;
+  position: relative;
+  animation: fadeInTop $t-std;
+
+  &.highlight-red {
+    &:after {
+      background-color: $c-red;
+    }
+  }
+
+  &.highlight-yellow {
+    &:after {
+      background-color: $c-yellow;
+    }
+  }
+
+  &.highlight-green {
+    &:after {
+      background-color: $c-green;
+    }
+  }
+
+  &.highlight-blue {
+    &:after {
+      background-color: $c-brand;
+    }
+  }
+
+  &__preview {
+    width: 100%;
+    height: auto;
+  }
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @include font($fs: 20px, $lh: 23px, $fw: 700, $c: $c-text);
+    text-align: right;
+  }
+
+  &__btn-more {
+    background-color: $c-brand;
+    color: $c-white;
+    border: none;
+    outline: none;
+    padding: 6px 22px;
+    min-width: 120px;
+    border-radius: $br-xl;
+    cursor: pointer;
+    align-self: center;
+    margin-top: auto;
+
+    @include outline-btn($c-brand);
+  }
+
+  &:after {
+    @include absolute($b: 0, $r: 0, $l: 0, $z: 1);
+    height: 5px;
+    border-radius: 0 0 $br-xl $br-xl;
+    content: '';
+  }
+}
+
+@keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  100% {
+      opacity: 1;
+    transform: translateY(0);
+  }
+}

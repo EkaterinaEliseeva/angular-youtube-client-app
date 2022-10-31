@@ -1,0 +1,48 @@
+@import "variables";
+@import "mixins";
+
+.admin {
+  padding: 10px;
+  @include flex($jc: center);
+
+  @include media-xs {
+    padding: 45px;
+  }
+}
+
+.create-form {
+  padding: 28px 20px;
+  background-color: $c-gray-bg;
+  @include flex($fd: column, $ai: stretch);
+  border-radius: $br-lg;
+  width: 100%;
+
+  @include media-xs {
+    width: auto;
+  }
+
+  &__title {
+    align-self: flex-start;
+    @include font($fs: 23px, $lh: 27px, $fw: 700);
+    margin-bottom: 24px;
+  }
+
+  &__btn {
+    margin-top: 22px;
+    background-color: $c-brand;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    border-radius: $br-lg;
+    cursor: pointer;
+    min-width: 124px;
+    @include font($fs: 12px, $lh: 14px, $c: $c-white);
+    align-self: flex-end;
+
+    @include outline-btn($c-brand);
+
+    &:disabled {
+      background-color: $c-gray;
+    }
+  }
+}

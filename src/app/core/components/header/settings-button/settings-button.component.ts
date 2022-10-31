@@ -1,8 +1,5 @@
-import {
-  Component, EventEmitter, Input, Output,
-} from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import SortingService from 'src/app/core/services/sorting/sorting.service';
 
 @Component({
   selector: 'app-settings-button',
@@ -10,18 +7,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./settings-button.component.scss'],
 })
 export default class SettingsButtonComponent {
-  @Input() isShowSorting!: boolean;
+  public isShowSorting!: boolean;
 
-  @Output() toggleEvent: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'iconSettings',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-settings.svg'),
-    );
+  constructor(private readonly sortingService: SortingService) {
+    this.sortingService.showSorting.subscribe((isShow) => {
+      this.isShowSorting = isShow;
+    });
   }
 
   toggleSorting() {
-    this.toggleEvent.emit();
+    this.sortingService.toggleSorting();
   }
 }

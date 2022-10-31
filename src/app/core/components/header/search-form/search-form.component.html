@@ -1,5 +1,9 @@
 <form class="search-form">
-  <input #input class="search-form__input" [placeholder]="searchControlPlaceholder">
-  <button class="search-form__btn" (click)="changeSearchQuery(input.value)">{{searchBtnText}}</button>
+  <input
+    #input
+    class="search-form__input"
+    [placeholder]="searchControlPlaceholder"
+    (input)="changeSearchQuery(input.value)"
+  >
 </form>
 

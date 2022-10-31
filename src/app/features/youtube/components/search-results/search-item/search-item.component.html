@@ -1,0 +1,6 @@
+<div class="search-item" [appHighlightPublicationStatus]="item.snippet.publishedAt">
+  <img class="search-item__preview" [src]="previewUrl" [alt]="title">
+  <app-item-statistics [statistics]="statistics"></app-item-statistics>
+  <h3 class="search-item__title">{{title}}</h3>
+  <a [routerLink]="['/video', item.id]" class="search-item__btn-more">more...</a>
+</div>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import AuthService from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +7,18 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./profile.component.scss'],
 })
 export default class ProfileComponent {
-  public userName = 'Your Name';
+  public isLogged!: boolean;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'iconProfile',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-profile.svg'),
-    );
+  public userName!: string | null;
+
+  constructor(private readonly authService: AuthService) {
+    this.authService.user.subscribe((user) => {
+      this.isLogged = !!user;
+      this.userName = user?.login ?? null;
+    });
+  }
+
+  async logOut() {
+    await this.authService.logOut();
   }
 }

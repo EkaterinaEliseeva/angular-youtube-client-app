@@ -1,0 +1,22 @@
+@import "variables";
+@import "mixins";
+
+:host {
+  height: 100%;
+  @include container();
+  @include flex($jc: center);
+}
+
+.not-found {
+  @include flex();
+
+  &__img {
+    width: 100px;
+  }
+
+  &__title {
+    @include font($fs: 24px, $lh: 28px, $fw: 700, $c: $c-label);
+    margin-left: 24px;
+    max-width: 220px;
+  }
+}

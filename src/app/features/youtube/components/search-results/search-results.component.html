@@ -1,0 +1,7 @@
+<div class="search-results" >
+  <app-search-item
+    class="search-results__item"
+    [item]="searchItem"
+    *ngFor="let searchItem of items | sorting : sortType : sortOrder : filterBySentence">
+  </app-search-item>
+</div>

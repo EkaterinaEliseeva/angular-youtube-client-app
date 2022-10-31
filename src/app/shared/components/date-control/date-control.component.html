@@ -1,0 +1,13 @@
+<div class="control" [formGroup]="formGroup">
+  <label [for]="id" class="control__label">{{placeholder}}</label>
+  <input
+    class="control__input"
+    type="date"
+    [formControlName]="name"
+    [id]="id"
+    [required]="required">
+
+  <span class="control__error" *ngIf="error">
+    {{error}}
+  </span>
+</div>

@@ -1,0 +1,141 @@
+@import "variables";
+@import "mixins";
+
+.detailed-page {
+  @include container();
+}
+
+.detailed-card {
+  margin-top: 44px;
+  margin-bottom: 44px;
+  @include flex($ai: stretch, $fd: column);
+  filter: $card-shadow;
+
+  @include media-lg {
+    flex-direction: row;
+  }
+
+  &.highlight-red {
+    .detailed-card__back {
+      background-color: $c-red;
+      @include outline-btn($c-red);
+    }
+
+    .detailed-card__info:after {
+      background-color: $c-red;
+    }
+  }
+
+  &.highlight-yellow {
+    .detailed-card__back {
+      background-color: $c-yellow;
+      @include outline-btn($c-yellow);
+    }
+
+    .detailed-card__info:after {
+      background-color: $c-yellow;
+    }
+  }
+
+  &.highlight-green {
+    .detailed-card__back {
+      background-color: $c-green;
+      @include outline-btn($c-green);
+    }
+
+    .detailed-card__info:after {
+      background-color: $c-green;
+    }
+  }
+
+  &.highlight-blue {
+    .detailed-card__back {
+      background-color: $c-brand;
+      @include outline-btn($c-brand);
+    }
+
+    .detailed-card__info:after {
+      background-color: $c-brand;
+    }
+  }
+
+  &__back {
+    border: none;
+    outline: none;
+    width: 32px;
+    height: 32px;
+    border-radius: $br-lg 0 0 $br-lg;
+    cursor: pointer;
+    @include flex($jc: center);
+  }
+
+  &__video {
+    width: 100%;
+    border-radius: 0 0 0 $br-xl;
+    overflow: hidden;
+
+    @include media-lg {
+      width: 62%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    border-radius: 0 $br-xl $br-xl 0;
+    @include flex($fd: column, $ai: stretch);
+    padding: 16px;
+    background-color: $c-gray;
+    position: relative;
+
+    @include media-lg {
+      max-width: 436px;
+      padding: 32px 32px 20px;
+    }
+
+    &:after {
+      @include absolute($b: 0, $r: 0, $l: 0, $z: 1);
+      height: 5px;
+      border-radius: 0 0 $br-xl 0;
+      content: '';
+    }
+  }
+
+  &__header {
+    @include flex($ai: flex-end, $fw: wrap, $jc: space-between);
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    @include font($fs: 24px, $lh: 28px, $fw: 700, $c: $c-black);
+    min-width: 50%;
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+
+  &__date {
+    @include font($fs: 10px, $lh: 12px, $c: $c-label);
+    margin-top: 8px;
+  }
+
+  &__description {
+    @include font($fs: 12px, $lh: 14px, $c: $c-label);
+
+    b {
+      @include font($fs: 14px, $lh: 16px, $c: $c-black);
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: 20px;
+    @include flex($jc: center);
+  }
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import IconService from 'src/app/core/services/icon/icon.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export default class AppComponent {
   title = 'youtube-client-app';
+
+  constructor(private iconService: IconService) {
+    this.iconService.register();
+  }
 }
