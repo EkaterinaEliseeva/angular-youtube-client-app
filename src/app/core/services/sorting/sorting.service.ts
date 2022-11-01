@@ -2,29 +2,31 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import SortTypesEnum from 'src/app/features/youtube/enums/sort-types.enum';
 import SortOrderEnum from 'src/app/features/youtube/enums/sort-order.enum';
+import ISortingParams from 'src/app/core/models/sorting-params.interface';
 
 @Injectable()
 export default class SortingService {
   public showSorting: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public sortType
-  : BehaviorSubject<SortTypesEnum | null> = new BehaviorSubject<SortTypesEnum | null>(null);
-
-  public sortOrder
-  : BehaviorSubject<SortOrderEnum | null> = new BehaviorSubject<SortOrderEnum | null>(null);
-
-  public filterBySentence: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public sortingParams = new BehaviorSubject<ISortingParams>({
+    sortType: null,
+    sortOrder: null,
+    filterBySentence: null,
+  });
 
   public toggleSorting() {
     this.showSorting.next(!this.showSorting.getValue());
   }
 
   public changeFilterBySentence(sentence: string) {
-    this.filterBySentence.next(sentence);
+    this.sortingParams.next({
+      ...this.sortingParams.getValue(),
+      filterBySentence: sentence,
+    });
   }
 
   public toggleSortType(sortType: SortTypesEnum | null) {
-    const currentSortType = this.sortType.getValue();
+    const currentSortType = this.sortingParams.getValue().sortType;
 
     if (currentSortType === sortType) {
       const sortOrder = this.getNextSortOrder();
@@ -37,7 +39,7 @@ export default class SortingService {
   }
 
   private getNextSortOrder(): SortOrderEnum | null {
-    const currentSortOrder = this.sortOrder.getValue();
+    const currentSortOrder = this.sortingParams.getValue().sortOrder;
     if (!currentSortOrder) {
       return SortOrderEnum.asc;
     } if (currentSortOrder === SortOrderEnum.asc) {
@@ -48,10 +50,16 @@ export default class SortingService {
   }
 
   private changeSortType(sortType: SortTypesEnum | null) {
-    this.sortType.next(sortType);
+    this.sortingParams.next({
+      ...this.sortingParams.getValue(),
+      sortType,
+    });
   }
 
   private changeSortOrder(sortOrder: SortOrderEnum | null) {
-    this.sortOrder.next(sortOrder);
+    this.sortingParams.next({
+      ...this.sortingParams.getValue(),
+      sortOrder,
+    });
   }
 }

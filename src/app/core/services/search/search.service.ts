@@ -49,11 +49,10 @@ export default class SearchService {
   }
 
   private async getItemsByIds(ids: string[]) {
-    const items = ids?.length
-      ? await Promise.all(ids.map(async (id) => this.getItem(id)))
-      : [];
+    const itemsRequest = this.httpClient.get(this.config.baseUrl + this.config.videoQuery.replace('%id', ids.join(',')));
+    const itemsResponse = await firstValueFrom(itemsRequest) as ISearchResponse;
 
-    this.items.next(items);
+    this.items.next(itemsResponse.items);
   }
 
   private getItems(query: string): Observable<ISearchResponse> {

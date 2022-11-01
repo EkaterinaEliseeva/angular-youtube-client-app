@@ -38,7 +38,7 @@ export default class SortingPipe implements PipeTransform {
     searchItems: ISearchItem[],
     sortType: SortTypesEnum | null,
     sortOrder: SortOrderEnum | null,
-    filterSentence: string,
+    filterSentence: string | null,
   ): ISearchItem[] {
     this.sortedItems = searchItems;
 
