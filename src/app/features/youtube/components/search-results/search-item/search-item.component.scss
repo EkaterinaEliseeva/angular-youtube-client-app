@@ -46,6 +46,7 @@
     margin-bottom: 20px;
     @include font($fs: 20px, $lh: 23px, $fw: 700, $c: $c-text);
     text-align: right;
+    word-break: break-word;
   }
 
   &__btn-more {

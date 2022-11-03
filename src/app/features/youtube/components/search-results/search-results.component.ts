@@ -5,6 +5,10 @@ import SortingService from 'src/app/core/services/sorting/sorting.service';
 import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SearchService from 'src/app/core/services/search/search.service';
 import ISortingParams from 'src/app/core/models/sorting-params.interface';
+import { Store } from '@ngrx/store';
+import IAppStore from 'src/app/redux/store.model';
+import selectItems from 'src/app/redux/selectors/items.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -14,18 +18,24 @@ import ISortingParams from 'src/app/core/models/sorting-params.interface';
 export default class SearchResultsComponent {
   private sortParams!: ISortingParams;
 
-  public items!: ISearchItem[];
+  public items: ISearchItem[] = [];
+
+  public items$: Observable<ISearchItem[]>;
 
   constructor(
     private readonly searchService: SearchService,
     private readonly sortingService: SortingService,
+    private readonly store: Store<IAppStore>,
   ) {
-    this.sortingService.sortingParams.subscribe((params) => {
-      this.sortParams = params;
+    this.items$ = this.store.select(selectItems);
+
+    this.items$.subscribe((items) => {
+      console.log(items);
+      this.items = items;
     });
 
-    this.searchService.items.subscribe((items) => {
-      this.items = items;
+    this.sortingService.sortingParams.subscribe((params) => {
+      this.sortParams = params;
     });
   }
 

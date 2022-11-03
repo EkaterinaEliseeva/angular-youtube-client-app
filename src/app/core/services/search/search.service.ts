@@ -6,6 +6,10 @@ import YT_CONFIG from 'src/config/youtube.config';
 import { HttpClient } from '@angular/common/http';
 import ISearchResponse from 'src/app/features/youtube/models/search-response.model';
 import ISearchItem from 'src/app/features/youtube/models/search-item.model';
+import { Store } from '@ngrx/store';
+import selectItems from 'src/app/redux/selectors/items.selector';
+import IAppStore from 'src/app/redux/store.model';
+import itemsLoadAction from 'src/app/redux/actions/items.action';
 
 @Injectable()
 export default class SearchService {
@@ -17,9 +21,7 @@ export default class SearchService {
 
   private searchQuery: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  public items: BehaviorSubject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>([]);
-
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(private readonly httpClient: HttpClient, private readonly store: Store<IAppStore>) {
     this.searchQuery
       .pipe(
         debounceTime(this.debounceTime),
@@ -52,7 +54,7 @@ export default class SearchService {
     const itemsRequest = this.httpClient.get(this.config.baseUrl + this.config.videoQuery.replace('%id', ids.join(',')));
     const itemsResponse = await firstValueFrom(itemsRequest) as ISearchResponse;
 
-    this.items.next(itemsResponse.items);
+    this.store.dispatch(itemsLoadAction({ payload: { items: itemsResponse.items } }));
   }
 
   private getItems(query: string): Observable<ISearchResponse> {
