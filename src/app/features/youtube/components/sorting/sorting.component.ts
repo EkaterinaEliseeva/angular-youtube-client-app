@@ -1,7 +1,6 @@
 import {
   Component, Input,
 } from '@angular/core';
-import SortOrderEnum from 'src/app/features/youtube/enums/sort-order.enum';
 import SortTypesEnum from 'src/app/features/youtube/enums/sort-types.enum';
 import SortingService from 'src/app/core/services/sorting/sorting.service';
 import ISortingParams from 'src/app/core/models/sorting-params.interface';

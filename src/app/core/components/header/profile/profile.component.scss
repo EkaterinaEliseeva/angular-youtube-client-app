@@ -48,4 +48,21 @@
 
     @include outline-btn($c-brand);
   }
+
+  &__add {
+    background-color: $c-brand;
+    padding: 5px 16px;
+    border: none;
+    outline: none;
+    border-radius: $br-lg;
+    cursor: pointer;
+    @include font($fs: 12px, $lh: 14px, $c: $c-white);
+    margin-left: 8px;
+
+    @include media-sm {
+      padding: 5px 22px;
+    }
+
+    @include outline-btn($c-brand);
+  }
 }

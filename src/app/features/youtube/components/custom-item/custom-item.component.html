@@ -1,0 +1,6 @@
+<div class="search-item" [appHighlightPublicationStatus]="date">
+  <img class="search-item__preview" [src]="item.img" [alt]="item.title">
+  <h3 class="search-item__title">{{item.title}}</h3>
+  <a [routerLink]="['/video', item.id]" class="search-item__btn-more">more...</a>
+</div>
+

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import SortOrderEnum from 'src/app/features/youtube/enums/sort-order.enum';
-import SortTypesEnum from 'src/app/features/youtube/enums/sort-types.enum';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import SortingService from 'src/app/core/services/sorting/sorting.service';
 import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SearchService from 'src/app/core/services/search/search.service';
 import ISortingParams from 'src/app/core/models/sorting-params.interface';
-import { Store } from '@ngrx/store';
 import IAppStore from 'src/app/redux/store.model';
-import selectItems from 'src/app/redux/selectors/items.selector';
-import { Observable } from 'rxjs';
+import ITEMS_SELECTORS from 'src/app/features/youtube/stores/items/selectors/items.selector';
+import ICustomItem from 'src/app/features/youtube/stores/custom-items/custom-item.interface';
+import CUSTOM_ITEMS_SELECTORS from 'src/app/features/youtube/stores/custom-items/selectors/custom-items.selector';
 
 @Component({
   selector: 'app-search-results',
@@ -20,18 +20,26 @@ export default class SearchResultsComponent {
 
   public items: ISearchItem[] = [];
 
+  public customItems: ICustomItem[] = [];
+
   public items$: Observable<ISearchItem[]>;
+
+  public customItems$: Observable<ICustomItem[]>;
 
   constructor(
     private readonly searchService: SearchService,
     private readonly sortingService: SortingService,
     private readonly store: Store<IAppStore>,
   ) {
-    this.items$ = this.store.select(selectItems);
+    this.items$ = this.store.select(ITEMS_SELECTORS.items);
+    this.customItems$ = this.store.select(CUSTOM_ITEMS_SELECTORS.customItems);
 
     this.items$.subscribe((items) => {
-      console.log(items);
       this.items = items;
+    });
+
+    this.customItems$.subscribe((items) => {
+      this.customItems = items;
     });
 
     this.sortingService.sortingParams.subscribe((params) => {

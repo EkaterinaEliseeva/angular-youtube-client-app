@@ -5,11 +5,9 @@ import {
 import YT_CONFIG from 'src/config/youtube.config';
 import { HttpClient } from '@angular/common/http';
 import ISearchResponse from 'src/app/features/youtube/models/search-response.model';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import { Store } from '@ngrx/store';
-import selectItems from 'src/app/redux/selectors/items.selector';
 import IAppStore from 'src/app/redux/store.model';
-import itemsLoadAction from 'src/app/redux/actions/items.action';
+import itemsLoadAction from 'src/app/features/youtube/stores/items/actions/items.action';
 
 @Injectable()
 export default class SearchService {
@@ -54,7 +52,11 @@ export default class SearchService {
     const itemsRequest = this.httpClient.get(this.config.baseUrl + this.config.videoQuery.replace('%id', ids.join(',')));
     const itemsResponse = await firstValueFrom(itemsRequest) as ISearchResponse;
 
-    this.store.dispatch(itemsLoadAction({ payload: { items: itemsResponse.items } }));
+    this.store.dispatch(itemsLoadAction({
+      payload: {
+        items: itemsResponse.items, isLoaded: true,
+      },
+    }));
   }
 
   private getItems(query: string): Observable<ISearchResponse> {

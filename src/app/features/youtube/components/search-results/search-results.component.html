@@ -1,4 +1,10 @@
 <div class="search-results" >
+  <app-custom-item
+    class="search-results__item"
+    [item]="customItem"
+    *ngFor="let customItem of customItems">
+  </app-custom-item>
+
   <app-search-item
     class="search-results__item"
     [item]="searchItem"

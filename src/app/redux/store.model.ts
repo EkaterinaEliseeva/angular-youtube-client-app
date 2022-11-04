@@ -1,7 +1,7 @@
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
-import IItemsStore from 'src/app/redux/models/items-store.model';
+import IItemsStore from 'src/app/features/youtube/stores/items/items-store.model';
+import ICustomItemsStore from 'src/app/features/youtube/stores/custom-items/custom-items-store.model';
 
 export default interface IAppStore {
-  customCards: ISearchItem[];
+  customItemsStore: ICustomItemsStore;
   itemsStore: IItemsStore;
 }

@@ -18,7 +18,6 @@
     svgIcon="iconProfile"
     aria-hidden="false"
     aria-label="Account svg icon">
-
   </mat-icon>
 
   <button
@@ -26,5 +25,12 @@
     class="profile__logout"
     (click)="logOut()">
     Log out
+  </button>
+
+  <button
+    *ngIf="isLogged"
+    [routerLink]="['/admin']"
+    class="profile__add">
+    Admin
   </button>
 </div>
