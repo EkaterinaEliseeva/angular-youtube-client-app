@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import SortingService from 'src/app/core/services/sorting/sorting.service';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SearchService from 'src/app/core/services/search/search.service';
 import ISortingParams from 'src/app/core/models/sorting-params.interface';
 import IAppStore from 'src/app/redux/store.model';
 import ITEMS_SELECTORS from 'src/app/features/youtube/stores/items/selectors/items.selector';
-import ICustomItem from 'src/app/features/youtube/stores/custom-items/custom-item.interface';
 import CUSTOM_ITEMS_SELECTORS from 'src/app/features/youtube/stores/custom-items/selectors/custom-items.selector';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -18,13 +17,13 @@ import CUSTOM_ITEMS_SELECTORS from 'src/app/features/youtube/stores/custom-items
 export default class SearchResultsComponent {
   private sortParams!: ISortingParams;
 
-  public items: ISearchItem[] = [];
+  public items: IItem[] = [];
 
-  public customItems: ICustomItem[] = [];
+  public customItems: IItem[] = [];
 
-  public items$: Observable<ISearchItem[]>;
+  public items$: Observable<IItem[]>;
 
-  public customItems$: Observable<ICustomItem[]>;
+  public customItems$: Observable<IItem[]>;
 
   constructor(
     private readonly searchService: SearchService,
@@ -35,11 +34,12 @@ export default class SearchResultsComponent {
     this.customItems$ = this.store.select(CUSTOM_ITEMS_SELECTORS.customItems);
 
     this.items$.subscribe((items) => {
-      this.items = items;
+      this.items = [...this.customItems, ...items];
     });
 
     this.customItems$.subscribe((items) => {
       this.customItems = items;
+      this.items = [...items, ...this.items];
     });
 
     this.sortingService.sortingParams.subscribe((params) => {

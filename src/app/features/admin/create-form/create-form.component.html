@@ -1,0 +1,58 @@
+<form
+  class="create__form create-form"
+  [formGroup]="createForm"
+  (submit)="createForm.valid && submitForm($event)">
+  <h1 class="create-form__title">{{formActionName}}</h1>
+
+  <app-control
+    [formGroup]="createForm"
+    name="title"
+    id="title"
+    [required]="true"
+    placeholder="Title"
+    [error]="title.error">
+  </app-control>
+
+  <app-control
+    [formGroup]="createForm"
+    name="description"
+    id="description"
+    [required]="false"
+    placeholder="Description"
+    [error]="description.error">
+  </app-control>
+
+  <app-control
+    [formGroup]="createForm"
+    name="img"
+    id="img"
+    [required]="true"
+    placeholder="Image Link"
+    [error]="img.error">
+  </app-control>
+
+  <app-control
+    [formGroup]="createForm"
+    name="video"
+    id="video"
+    [required]="true"
+    placeholder="Video Link"
+    [error]="video.error">
+  </app-control>
+
+  <app-date-control
+    [formGroup]="createForm"
+    name="date"
+    id="date"
+    [required]="true"
+    placeholder="Date"
+    [error]="date.error">
+  </app-date-control>
+
+  <button
+    type="submit"
+    class="create-form__btn"
+    [disabled]="!createForm.valid">
+    {{formActionName}}
+  </button>
+</form>

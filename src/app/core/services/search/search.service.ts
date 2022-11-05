@@ -8,6 +8,7 @@ import ISearchResponse from 'src/app/features/youtube/models/search-response.mod
 import { Store } from '@ngrx/store';
 import IAppStore from 'src/app/redux/store.model';
 import itemsLoadAction from 'src/app/features/youtube/stores/items/actions/items.action';
+import ItemMapper from 'src/app/features/youtube/mappers/item.mapper';
 
 @Injectable()
 export default class SearchService {
@@ -54,7 +55,7 @@ export default class SearchService {
 
     this.store.dispatch(itemsLoadAction({
       payload: {
-        items: itemsResponse.items, isLoaded: true,
+        items: itemsResponse.items?.map((item) => ItemMapper.map(item)), isLoaded: true,
       },
     }));
   }

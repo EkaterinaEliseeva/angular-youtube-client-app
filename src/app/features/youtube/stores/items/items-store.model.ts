@@ -1,6 +1,6 @@
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 export default interface IItemsStore {
-  items: ISearchItem[],
+  items: IItem[],
   isLoaded: boolean;
 }

@@ -8,41 +8,28 @@
   @include media-xs {
     padding: 45px;
   }
-}
 
-.create-form {
-  padding: 28px 20px;
-  background-color: $c-gray-bg;
-  @include flex($fd: column, $ai: stretch);
-  border-radius: $br-lg;
-  width: 100%;
-
-  @include media-xs {
-    width: auto;
+  &__success {
+    @include font($fs: 16px, $lh: 24px, $c: $c-text);
   }
 
-  &__title {
-    align-self: flex-start;
-    @include font($fs: 23px, $lh: 27px, $fw: 700);
-    margin-bottom: 24px;
+  &__buttons {
+    margin-top: 16px;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  &__btn {
-    margin-top: 22px;
+  &__button {
     background-color: $c-brand;
-    padding: 8px 16px;
     border: none;
     outline: none;
+    padding: 4px 8px;
     border-radius: $br-lg;
     cursor: pointer;
-    min-width: 124px;
-    @include font($fs: 12px, $lh: 14px, $c: $c-white);
-    align-self: flex-end;
-
+    @include flex($jc: center);
+    @include font($fs: 10px, $lh: 18px, $c: $c-white);
     @include outline-btn($c-brand);
-
-    &:disabled {
-      background-color: $c-gray;
-    }
   }
 }
+

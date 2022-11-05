@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
-import ISearchItemStatistics from 'src/app/features/youtube/models/search-item-statistcis.model';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 @Component({
   selector: 'app-search-item',
@@ -8,13 +7,7 @@ import ISearchItemStatistics from 'src/app/features/youtube/models/search-item-s
   styleUrls: ['./search-item.component.scss'],
 })
 export default class SearchItemComponent implements OnInit {
-  @Input() public item!: ISearchItem;
-
-  public title!: string;
-
-  public previewUrl!: string;
-
-  public statistics!: ISearchItemStatistics;
+  @Input() public item!: IItem;
 
   private assertInputsProvided(): void {
     if (!this.item) {
@@ -25,9 +18,5 @@ export default class SearchItemComponent implements OnInit {
   public ngOnInit(): void {
     // Ensure the input bindings are actually provided at run-time
     this.assertInputsProvided();
-
-    this.previewUrl = this.item.snippet.thumbnails.medium.url;
-    this.title = this.item.snippet.title;
-    this.statistics = this.item.statistics;
   }
 }

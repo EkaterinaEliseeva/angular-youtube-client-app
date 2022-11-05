@@ -12,7 +12,6 @@ import SharedModule from 'src/app/shared/shared.module';
 
 import DetailedPageComponent from './pages/detailed-page/detailed-page.component';
 import ItemStatisticsComponent from './components/item-statistics/item-statistics.component';
-import CustomItemComponent from './components/custom-item/custom-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import CustomItemComponent from './components/custom-item/custom-item.component'
     SortingPipe,
     DetailedPageComponent,
     ItemStatisticsComponent,
-    CustomItemComponent,
   ],
   imports: [
     CommonModule,

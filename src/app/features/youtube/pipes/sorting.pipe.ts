@@ -1,28 +1,28 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SortTypesEnum from 'src/app/features/youtube/enums/sort-types.enum';
 import SortOrderEnum from 'src/app/features/youtube/enums/sort-order.enum';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 @Pipe({
   name: 'sorting',
 })
 export default class SortingPipe implements PipeTransform {
-  sortedItems: ISearchItem[] = [];
+  sortedItems: IItem[] = [];
 
-  private sortByDate(searchItems: ISearchItem[], sortOrder: SortOrderEnum) {
+  private sortByDate(searchItems: IItem[], sortOrder: SortOrderEnum) {
     if (sortOrder === SortOrderEnum.asc) {
       this.sortedItems = searchItems.slice().sort(
-        (a, b) => moment(a.snippet.publishedAt).valueOf() - moment(b.snippet.publishedAt).valueOf(),
+        (a, b) => moment(a.date).valueOf() - moment(b.date).valueOf(),
       );
     } else if (sortOrder === SortOrderEnum.desc) {
       this.sortedItems = searchItems.slice().sort(
-        (a, b) => moment(b.snippet.publishedAt).valueOf() - moment(a.snippet.publishedAt).valueOf(),
+        (a, b) => moment(b.date).valueOf() - moment(a.date).valueOf(),
       );
     }
   }
 
-  private sortByViews(searchItems: ISearchItem[], sortOrder: SortOrderEnum) {
+  private sortByViews(searchItems: IItem[], sortOrder: SortOrderEnum) {
     if (sortOrder === SortOrderEnum.asc) {
       this.sortedItems = searchItems.slice().sort(
         (a, b) => Number(a.statistics.viewCount) - Number(b.statistics.viewCount),
@@ -35,11 +35,11 @@ export default class SortingPipe implements PipeTransform {
   }
 
   transform(
-    searchItems: ISearchItem[],
+    searchItems: IItem[],
     sortType: SortTypesEnum | null,
     sortOrder: SortOrderEnum | null,
     filterSentence: string | null,
-  ): ISearchItem[] {
+  ): IItem[] {
     this.sortedItems = searchItems;
 
     if (sortType === SortTypesEnum.date && sortOrder) {
@@ -53,7 +53,7 @@ export default class SortingPipe implements PipeTransform {
     }
 
     return this.sortedItems.filter(
-      (item) => item.snippet.title.toLowerCase().includes(filterSentence.toLowerCase()),
+      (item) => item.title.toLowerCase().includes(filterSentence.toLowerCase()),
     );
   }
 }

@@ -1,7 +1,7 @@
 import IAppStore from 'src/app/redux/store.model';
-import ICustomItem from 'src/app/features/youtube/stores/custom-items/custom-item.interface';
+import IItem from 'src/app/features/youtube/models/item.model';
 
-const selectItems = (state: IAppStore): ICustomItem[] => state.customItemsStore.customItems;
+const selectItems = (state: IAppStore): IItem[] => state.customItemsStore.customItems;
 
 const CUSTOM_ITEMS_SELECTORS = {
   customItems: selectItems,

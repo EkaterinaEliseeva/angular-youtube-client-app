@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SearchService from 'src/app/core/services/search/search.service';
+import IAppStore from 'src/app/redux/store.model';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-detailed-page',

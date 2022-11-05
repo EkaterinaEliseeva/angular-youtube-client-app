@@ -1,5 +1,5 @@
-import ICustomItem from 'src/app/features/youtube/stores/custom-items/custom-item.interface';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 export default interface ICustomItemsStore {
-  customItems: ICustomItem[],
+  customItems: IItem[],
 }
