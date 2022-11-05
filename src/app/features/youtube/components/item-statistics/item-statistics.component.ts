@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import ISearchItemStatistics from 'src/app/features/youtube/models/search-item-statistcis.model';
 
 @Component({
@@ -6,6 +6,12 @@ import ISearchItemStatistics from 'src/app/features/youtube/models/search-item-s
   templateUrl: './item-statistics.component.html',
   styleUrls: ['./item-statistics.component.scss'],
 })
-export default class ItemStatisticsComponent {
+export default class ItemStatisticsComponent implements OnInit {
   @Input() statistics!: ISearchItemStatistics;
+
+  public isShow: boolean = false;
+
+  ngOnInit() {
+    this.isShow = Object.values(this.statistics).every((value) => value);
+  }
 }

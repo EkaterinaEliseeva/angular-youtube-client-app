@@ -8,7 +8,7 @@
         *ngFor="let currSortType of sortTypes"
         (click)="toggleSortType(currSortType)">
         <button
-          class="sorting__form-control-btn {{currSortType === sortType ? 'sorting__form-control-btn--active' : ''}} {{currSortType === sortType && sortOrder ? 'sorting__form-control-btn--' + sortOrder : ''}}"
+          class="sorting__form-control-btn {{currSortType === sortType && sortOrder ? 'sorting__form-control-btn--active' : ''}} {{currSortType === sortType && sortOrder ? 'sorting__form-control-btn--' + sortOrder : ''}}"
           >
           {{currSortType}}
         </button>

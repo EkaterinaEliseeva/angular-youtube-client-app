@@ -41,11 +41,21 @@
     height: auto;
   }
 
+  &__tag {
+    @include font($fs: 10px, $lh: 12px, $c: $c-white);
+    text-transform: uppercase;
+    @include absolute($t: 0, $r: 0);
+    padding: 6px;
+    background-color: $c-text;
+    border-top-right-radius: $br-lg;
+  }
+
   &__title {
     margin-top: 20px;
     margin-bottom: 20px;
     @include font($fs: 20px, $lh: 23px, $fw: 700, $c: $c-text);
     text-align: right;
+    word-break: break-word;
   }
 
   &__btn-more {

@@ -5,7 +5,10 @@ import {
 import YT_CONFIG from 'src/config/youtube.config';
 import { HttpClient } from '@angular/common/http';
 import ISearchResponse from 'src/app/features/youtube/models/search-response.model';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
+import { Store } from '@ngrx/store';
+import IAppStore from 'src/app/redux/store.model';
+import itemsLoadAction from 'src/app/features/youtube/stores/items/actions/items.action';
+import ItemMapper from 'src/app/features/youtube/mappers/item.mapper';
 
 @Injectable()
 export default class SearchService {
@@ -17,9 +20,7 @@ export default class SearchService {
 
   private searchQuery: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  public items: BehaviorSubject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>([]);
-
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(private readonly httpClient: HttpClient, private readonly store: Store<IAppStore>) {
     this.searchQuery
       .pipe(
         debounceTime(this.debounceTime),
@@ -49,11 +50,14 @@ export default class SearchService {
   }
 
   private async getItemsByIds(ids: string[]) {
-    const items = ids?.length
-      ? await Promise.all(ids.map(async (id) => this.getItem(id)))
-      : [];
+    const itemsRequest = this.httpClient.get(this.config.baseUrl + this.config.videoQuery.replace('%id', ids.join(',')));
+    const itemsResponse = await firstValueFrom(itemsRequest) as ISearchResponse;
 
-    this.items.next(items);
+    this.store.dispatch(itemsLoadAction({
+      payload: {
+        items: itemsResponse.items?.map((item) => ItemMapper.map(item)), isLoaded: true,
+      },
+    }));
   }
 
   private getItems(query: string): Observable<ISearchResponse> {

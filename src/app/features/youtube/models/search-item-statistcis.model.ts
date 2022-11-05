@@ -1,6 +1,6 @@
 export default interface ISearchItemStatistics {
-  viewCount: string;
-  likeCount: string;
-  favoriteCount: string;
-  commentCount: string;
+  viewCount: string | number;
+  likeCount: string | number;
+  favoriteCount: string | number;
+  commentCount: string | number;
 }

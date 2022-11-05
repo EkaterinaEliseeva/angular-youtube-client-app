@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import SearchService from 'src/app/core/services/search/search.service';
 import SortingService from 'src/app/core/services/sorting/sorting.service';
 
 @Component({
@@ -8,20 +7,13 @@ import SortingService from 'src/app/core/services/sorting/sorting.service';
   styleUrls: ['./youtube.component.scss'],
 })
 export default class YoutubeComponent {
-  public isLoaded!: boolean;
-
   public isShowSorting!: boolean;
 
   constructor(
-    private readonly searchService: SearchService,
     private readonly sortingService: SortingService,
   ) {
     this.sortingService.showSorting.subscribe((isShow) => {
       this.isShowSorting = isShow;
-    });
-
-    this.searchService.items.subscribe((items) => {
-      this.isLoaded = !!items.length;
     });
   }
 }

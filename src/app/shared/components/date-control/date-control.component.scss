@@ -20,9 +20,24 @@
     outline: none;
     padding: 12px 8px;
     @include font($fs: 10px, $lh: 12px, $c: $c-black);
+    cursor: pointer;
+    position: relative;
 
     @include media-xs {
       width: 304px;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      bottom: 0;
+      color: transparent;
+      cursor: pointer;
+      height: auto;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
     }
   }
 

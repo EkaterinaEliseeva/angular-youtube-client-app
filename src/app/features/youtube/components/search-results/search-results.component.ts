@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import SortOrderEnum from 'src/app/features/youtube/enums/sort-order.enum';
-import SortTypesEnum from 'src/app/features/youtube/enums/sort-types.enum';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import SortingService from 'src/app/core/services/sorting/sorting.service';
-import ISearchItem from 'src/app/features/youtube/models/search-item.model';
 import SearchService from 'src/app/core/services/search/search.service';
+import ISortingParams from 'src/app/core/models/sorting-params.interface';
+import IAppStore from 'src/app/redux/store.model';
+import ITEMS_SELECTORS from 'src/app/features/youtube/stores/items/selectors/items.selector';
+import CUSTOM_ITEMS_SELECTORS from 'src/app/features/youtube/stores/custom-items/selectors/custom-items.selector';
+import IItem from 'src/app/features/youtube/models/item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -11,32 +15,47 @@ import SearchService from 'src/app/core/services/search/search.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export default class SearchResultsComponent {
-  public sortOrder!: SortOrderEnum | null;
+  private sortParams!: ISortingParams;
 
-  public sortType!: SortTypesEnum | null;
+  public items: IItem[] = [];
 
-  public filterBySentence!: string;
+  public customItems: IItem[] = [];
 
-  public items!: ISearchItem[];
+  public items$: Observable<IItem[]>;
+
+  public customItems$: Observable<IItem[]>;
 
   constructor(
     private readonly searchService: SearchService,
     private readonly sortingService: SortingService,
+    private readonly store: Store<IAppStore>,
   ) {
-    this.sortingService.sortOrder.subscribe((sortOrder) => {
-      this.sortOrder = sortOrder;
+    this.items$ = this.store.select(ITEMS_SELECTORS.items);
+    this.customItems$ = this.store.select(CUSTOM_ITEMS_SELECTORS.customItems);
+
+    this.items$.subscribe((items) => {
+      this.items = [...this.customItems, ...items];
     });
 
-    this.sortingService.sortType.subscribe((sortType) => {
-      this.sortType = sortType;
+    this.customItems$.subscribe((items) => {
+      this.customItems = items;
+      this.items = [...items, ...this.items];
     });
 
-    this.sortingService.filterBySentence.subscribe((filterBySentence) => {
-      this.filterBySentence = filterBySentence;
+    this.sortingService.sortingParams.subscribe((params) => {
+      this.sortParams = params;
     });
+  }
 
-    this.searchService.items.subscribe((items) => {
-      this.items = items;
-    });
+  get sortType() {
+    return this.sortParams.sortType;
+  }
+
+  get sortOrder() {
+    return this.sortParams.sortOrder;
+  }
+
+  get filterBySentence() {
+    return this.sortParams.filterBySentence;
   }
 }
